@@ -1,23 +1,24 @@
-import tkinter as tk
+import customtkinter as ctk
 
 from services import TodoService
 
 
-class CountTask:
-    def __init__(self, parent):
+class TaskCounter:
+    def __init__(self, parent) -> None:
         self.parent = parent
         self._todeService = TodoService()
-        self.textLabel = tk.StringVar(value=f"Tâches à faire : {len(self._todeService.getTasks())}")
-    
+        self.textLabel = ctk.StringVar(
+            value=f"Tâches à faire : {len(self._todeService.getTasks())}"
+        )
+
     def show(self):
-        self.label = tk.Label(
-          self.parent, 
-          textvariable=self.textLabel,
-          font="arial 20 bold", 
-          fg="white", bg="#32405b"
+        self.label = ctk.CTkLabel(
+            self.parent,
+            text=self.textLabel.get(),
+            font=("arial", 25, "bold"),
+            text_color=("#FFF", "#FFF"),
+            fg_color="#32405b",
         ).pack(pady=15)
-    
-    def setCount(self):
+
+    def setCount(self) -> None:
         pass
-
-

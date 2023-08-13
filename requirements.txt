@@ -1,1 +1,3 @@
+customtkinter
+python-dotenv
 requests
