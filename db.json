@@ -3,27 +3,27 @@
     {
       "id": 1,
       "title": "Faire les courses",
-      "completed": true
+      "completed": "true"
     },
     {
       "id": 2,
       "title": "Préparer le dîner",
-      "completed": false
+      "completed": "true"
     },
     {
       "id": 3,
       "title": "Répondre aux e-mails",
-      "completed": false
+      "completed": "true"
     },
     {
       "id": 4,
       "title": "Faire de l'exercice",
-      "completed": false
+      "completed": "true"
     },
     {
       "id": 5,
       "title": "Lire un livre",
-      "completed": true
+      "completed": "true"
     }
   ]
 }

@@ -1,32 +1,22 @@
-import customtkinter as ctk
+from dependency_injector.wiring import Provide, inject
+from dotenv import load_dotenv
 
-from components.countTasks import TaskCounter
+from app import App
+from containers import Container
+from interfaces.task import ITaskService
 
 
-class App(ctk.CTk):
-    def __init__(self) -> None:
-        super().__init__()
-        self.title("Todo List")
-        self.geometry("750x450")
-        self.config(background="#32405b")
+load_dotenv(".env")
 
-        self.taks = []
 
-        self.heading = ctk.CTkLabel(
-            self,
-            text="Application Todo List",
-            font=("arial", 30, "bold"),
-            text_color=("#FFF", "#FFF"),
-            fg_color="#32405b",
-        )
-        self.heading.pack(pady=20)
-
-        self.countTask = TaskCounter(parent=self)
-        self.countTask.show()
-
-    def start(self) -> None:
-        self.mainloop()
+@inject
+def main(taskService: ITaskService = Provide[Container.taskService]) -> None:
+    App(taskService).start()
 
 
 if __name__ == "__main__":
-    App().start()
+    container = Container()
+    container.config.base_url.from_env("BASE_URL", required=True)
+    container.wire(modules=[__name__])
+
+    main()
